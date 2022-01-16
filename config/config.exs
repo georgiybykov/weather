@@ -47,6 +47,12 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# Open weather map data
+config :weather,
+       Weather.WeatherInfo,
+       url: "api.openweathermap.org/data/2.5/weather?lang=en&units=metric",
+       app_id: System.get_env("OPEN_WEATHER_APP_ID")
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
