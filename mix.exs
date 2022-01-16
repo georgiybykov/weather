@@ -11,6 +11,12 @@ defmodule Weather.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
+      dialyzer: [
+        plt_add_apps: [:mix, :ex_unit, :iex],
+        ignore_warnings: ".dialyzer-ignore.exs",
+        list_unused_filters: true,
+        plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
+      ],
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         coveralls: :test,
@@ -55,6 +61,7 @@ defmodule Weather.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:httpoison, "~> 1.8"},
+      {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:credo_contrib, "~> 0.2", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.10", only: :test}
