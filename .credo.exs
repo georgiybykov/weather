@@ -31,7 +31,7 @@
           "apps/*/test/",
           "apps/*/web/"
         ],
-        excluded: [~r"/_build/", ~r"/deps/", ~r"/node_modules/"]
+        excluded: [~r"/_build/", ~r"/deps/", ~r"/node_modules/", ~r"/.elixir_ls/"]
       },
       #
       # Load and configure plugins here:
@@ -156,7 +156,16 @@
           {Credo.Check.Warning.UnusedRegexOperation, []},
           {Credo.Check.Warning.UnusedStringOperation, []},
           {Credo.Check.Warning.UnusedTupleOperation, []},
-          {Credo.Check.Warning.UnsafeExec, []}
+          {Credo.Check.Warning.UnsafeExec, []},
+
+          #
+          ## CredoContrib
+          #
+          {CredoContrib.Check.FunctionBlockSyntax},
+          {CredoContrib.Check.DocWhitespace},
+          {CredoContrib.Check.ModuleDirectivesOrder},
+          {CredoContrib.Check.PublicPrivateFunctionName},
+          {CredoContrib.Check.SingleFunctionPipe}
         ],
         disabled: [
           #
