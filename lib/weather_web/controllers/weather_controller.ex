@@ -1,7 +1,7 @@
 defmodule WeatherWeb.WeatherController do
   use WeatherWeb, :controller
 
-  alias Weather.WeatherInfo
+  alias Weather.ApiClients.OpenWeather
 
   def index(conn, _params) do
     render(conn, "index.html", data: nil)
@@ -9,16 +9,23 @@ defmodule WeatherWeb.WeatherController do
 
   def search(conn, %{"city" => %{"name" => city_name}}) do
     city_name
-    |> WeatherInfo.get_weather_data()
-    |> response(conn)
+    |> OpenWeather.get_weather_data()
+    |> respond(conn)
   end
 
-  defp response(body, conn) do
-    case body["cod"] do
-      200 -> render(conn, "index.html", data: body)
-      401 -> put_flash_and_redirect(conn, :error, "Invalid API key. Please contact to support.")
-      404 -> put_flash_and_redirect(conn, :notice, String.capitalize(body["message"]))
-      _ -> put_flash_and_redirect(conn, :info, String.capitalize(body["message"]))
+  defp respond(data, conn) do
+    case data do
+      {:ok, body} ->
+        render(conn, "index.html", data: body)
+
+      {:unauthorized, message} ->
+        put_flash_and_redirect(conn, :error, message)
+
+      {:not_found, message} ->
+        put_flash_and_redirect(conn, :notice, message)
+
+      {:unknown, message} ->
+        put_flash_and_redirect(conn, :info, message)
     end
   end
 

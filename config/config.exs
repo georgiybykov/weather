@@ -49,7 +49,7 @@ config :phoenix, :json_library, Jason
 
 # Open weather map data
 config :weather,
-       Weather.WeatherInfo,
+       Weather.ApiClients.OpenWeather,
        url: "api.openweathermap.org/data/2.5/weather?lang=en&units=metric",
        app_id: System.get_env("OPEN_WEATHER_APP_ID")
 
