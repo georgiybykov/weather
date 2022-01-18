@@ -1,5 +1,7 @@
 defmodule Weather.ApiClients.OpenWeather do
-  @moduledoc false
+  @moduledoc """
+  An API client for making requests to an external OpenWeather service.
+  """
 
   def get_weather_data(city_name) do
     Application.get_env(:weather, __MODULE__)
@@ -25,11 +27,8 @@ defmodule Weather.ApiClients.OpenWeather do
       401 ->
         {:unauthorized, "Invalid API key. Please contact to support."}
 
-      404 ->
-        {:not_found, String.capitalize(response_body["message"])}
-
       _ ->
-        {:unknown, String.capitalize(response_body["message"])}
+        {:error, String.capitalize(response_body["message"])}
     end
   end
 end

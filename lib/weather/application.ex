@@ -7,6 +7,8 @@ defmodule Weather.Application do
 
   @impl true
   def start(_type, _args) do
+    :ok = Weather.Cache.start()
+
     children = [
       # Start the Ecto repository
       Weather.Repo,
