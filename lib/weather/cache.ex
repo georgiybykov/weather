@@ -10,6 +10,7 @@ defmodule Weather.Cache do
   @doc """
   Creates a new ETS Cache if it doesn't already exist.
   """
+  @spec start() :: :ok | {:error, :already_started}
   def start do
     :ets.new(@table, [:set, :public, :named_table])
     :ok
@@ -21,6 +22,7 @@ defmodule Weather.Cache do
   @doc """
   Fetches a value from the cache.
   """
+  @spec get(key :: any(), value :: number()) :: any()
   def get(key, ttl \\ @default_ttl_sec) do
     case :ets.lookup(@table, key) do
       [{^key, value, ts}] ->
@@ -36,6 +38,7 @@ defmodule Weather.Cache do
   @doc """
   Puts a value into the cache.
   """
+  @spec put(key :: any(), value :: any()) :: :ok
   def put(key, value) do
     true = :ets.insert(@table, {key, value, current_timestamp()})
     :ok
@@ -44,6 +47,7 @@ defmodule Weather.Cache do
   @doc """
   Deletes a value from the cache.
   """
+  @spec delete(key :: any()) :: :ok
   def delete(key) do
     true = :ets.delete(@table, key)
     :ok
@@ -53,6 +57,7 @@ defmodule Weather.Cache do
   Tries to get a value from the cache if it exists.
   Otherwise, puts it into the cache and return the result.
   """
+  @spec resolve(key :: any(), ttl :: number(), resolver :: (() -> any())) :: {:ok, any()}
   def resolve(key, ttl \\ @default_ttl_sec, resolver) when is_function(resolver, @func_arity) do
     case get(key, ttl) do
       nil ->
@@ -69,8 +74,9 @@ defmodule Weather.Cache do
   @doc """
   Helper function to unify style for binary payload as cache key.
   """
-  def string_to_atom_key(string) when is_binary(string) do
-    string
+  @spec string_to_atom_key(key :: binary()) :: atom()
+  def string_to_atom_key(key) when is_binary(key) do
+    key
     |> String.trim()
     |> String.downcase()
     |> String.split(~r{\s+})

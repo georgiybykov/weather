@@ -1,6 +1,7 @@
 defmodule WeatherWeb.WeatherView do
   use WeatherWeb, :view
 
+  @spec render_weather_info(map()) :: Phoenix.LiveView.Rendered.t()
   def render_weather_info(assigns) do
     %{
       "name" => name,
