@@ -3,7 +3,7 @@ defmodule Weather.ApiClients.OpenWeather do
   An API client for making requests to an external OpenWeather service.
   """
 
-  @type weather_data ::
+  @type handled_response ::
           {:ok, map()}
           | {:unauthorized, binary()}
           | {:error, binary()}
@@ -13,7 +13,7 @@ defmodule Weather.ApiClients.OpenWeather do
   to get weather data for the given city.
   Processes the response by return code.
   """
-  @spec get_weather_data(city_name :: binary()) :: weather_data
+  @spec get_weather_data(city_name :: binary()) :: handled_response
   def get_weather_data(city_name) do
     Application.get_env(:weather, __MODULE__)
     |> fetch_full_url(city_name)
@@ -33,7 +33,7 @@ defmodule Weather.ApiClients.OpenWeather do
   defp decode_response_body(response),
     do: Jason.decode!(response.body)
 
-  @spec handle(response_body :: map()) :: weather_data
+  @spec handle(response_body :: map()) :: handled_response
   defp handle(response_body) do
     case response_body["cod"] do
       200 ->

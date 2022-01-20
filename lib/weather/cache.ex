@@ -57,8 +57,8 @@ defmodule Weather.Cache do
   Tries to get a value from the cache if it exists.
   Otherwise, puts it into the cache and return the result.
   """
-  @spec resolve(key :: any(), ttl :: number(), resolver :: (() -> any())) :: {:ok, any()}
-  def resolve(key, ttl \\ @default_ttl_sec, resolver) when is_function(resolver, @func_arity) do
+  @spec fetch(key :: any(), ttl :: number(), resolver :: (() -> any())) :: {:ok, any()}
+  def fetch(key, ttl \\ @default_ttl_sec, resolver) when is_function(resolver, @func_arity) do
     case get(key, ttl) do
       nil ->
         with result <- resolver.() do
@@ -71,18 +71,6 @@ defmodule Weather.Cache do
     end
   end
 
-  @doc """
-  Helper function to unify style for binary payload as cache key.
-  """
-  @spec string_to_atom_key(key :: binary()) :: atom()
-  def string_to_atom_key(key) when is_binary(key) do
-    key
-    |> String.trim()
-    |> String.downcase()
-    |> String.split(~r{\s+})
-    |> Enum.join("_")
-    |> String.to_atom()
-  end
-
+  @spec current_timestamp() :: integer()
   defp current_timestamp, do: DateTime.to_unix(DateTime.utc_now())
 end

@@ -29,27 +29,15 @@ defmodule Weather.CacheTest do
     assert Cache.delete(:key) == :ok
   end
 
-  describe "#resolve" do
+  describe "#fetch" do
     test "when the key is not defined, it defines and saves the data" do
-      assert Cache.resolve(:key, fn -> "value" end) == {:ok, "value"}
+      assert Cache.fetch(:key, fn -> "value" end) == {:ok, "value"}
     end
 
     test "when the key value has been stored previously, returns it" do
       :ok = Cache.put(:key, "value")
 
-      assert Cache.resolve(:key, fn -> "value" end) == {:ok, "value"}
-    end
-  end
-
-  describe "#string_to_atom_key" do
-    test "when param is not a binary type" do
-      assert_raise FunctionClauseError, fn ->
-        Cache.string_to_atom_key(1)
-      end
-    end
-
-    test "when the parameter type is valid, it converts it to an atom key" do
-      assert Cache.string_to_atom_key(" nEw  city To sEArch  ") == :new_city_to_search
+      assert Cache.fetch(:key, fn -> "value" end) == {:ok, "value"}
     end
   end
 end
