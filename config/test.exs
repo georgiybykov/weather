@@ -23,6 +23,9 @@ config :weather, WeatherWeb.Endpoint,
 # In test we don't send emails.
 config :weather, Weather.Mailer, adapter: Swoosh.Adapters.Test
 
+# Use mock API client for test environment.
+config :weather, :weather_api_client, Weather.ApiClients.OpenWeatherMock
+
 # Print only warnings and errors during test
 config :logger, level: :warn
 

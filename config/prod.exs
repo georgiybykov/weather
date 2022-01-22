@@ -11,6 +11,9 @@ import Config
 # before starting your production server.
 config :weather, WeatherWeb.Endpoint, cache_static_manifest: "priv/static/cache_manifest.json"
 
+# Use real API client for production.
+config :weather, :weather_api_client, Weather.ApiClients.OpenWeather
+
 # Do not print debug messages in production
 config :logger, level: :info
 

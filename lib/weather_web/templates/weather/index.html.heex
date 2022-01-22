@@ -1,6 +1,6 @@
 <section class="phx-hero">
-    <%= form_for @conn, Routes.weather_path(@conn, :search), [as: :city], fn f -> %>
-        <%= text_input f, :name  %>
+    <%= form_for @conn, Routes.weather_path(@conn, :search), fn f -> %>
+        <%= text_input f, :city  %>
         <%= submit "Search by city" %>
     <% end %>
 </section>
