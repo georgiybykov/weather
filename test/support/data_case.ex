@@ -16,6 +16,12 @@ defmodule Weather.DataCase do
 
   use ExUnit.CaseTemplate
 
+  @type open_weather_response ::
+          %HTTPoison.Response{
+            :body => binary(),
+            :status_code => pos_integer()
+          }
+
   using do
     quote do
       alias Weather.Repo
@@ -45,5 +51,37 @@ defmodule Weather.DataCase do
         opts |> Keyword.get(String.to_existing_atom(key), key) |> to_string()
       end)
     end)
+  end
+
+  @spec success_response() :: open_weather_response
+  def success_response do
+    %HTTPoison.Response{
+      body: "{\"coord\":{\"lon\":-61.4833,\"lat\":10.65},
+          \"weather\":[{\"id\":800,\"main\":\"Clear\",\"description\":\"clear sky\",\"icon\":\"01d\"}],
+          \"base\":\"stations\",\"main\":{\"temp\":29.61,\"feels_like\":31.75,\"temp_min\":28.86,
+          \"temp_max\":30.55,\"pressure\":1014,\"humidity\":58},\"visibility\":10000,
+          \"wind\":{\"speed\":3.68,\"deg\":54,\"gust\":4.94},\"clouds\":{\"all\":6},
+          \"dt\":1642878733,\"sys\":{\"type\":2,\"id\":2002897,\"country\":\"TT\",
+          \"sunrise\":1642847349,\"sunset\":1642889133},\"timezone\":-14400,\"id\":3573652,
+          \"name\":\"Success\",\"cod\":200}",
+      status_code: 200
+    }
+  end
+
+  @spec unauthorized_response() :: open_weather_response
+  def unauthorized_response do
+    %HTTPoison.Response{
+      body:
+        "{\"cod\":401, \"message\": \"Invalid API key. Please see http://openweathermap.org/faq#error401 for more info.\"}",
+      status_code: 401
+    }
+  end
+
+  @spec not_found_response() :: open_weather_response
+  def not_found_response do
+    %HTTPoison.Response{
+      body: "{\"cod\":\"404\",\"message\":\"city not found\"}",
+      status_code: 404
+    }
   end
 end

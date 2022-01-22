@@ -17,46 +17,49 @@ defmodule Weather.ApiClients.OpenWeatherMock do
   def get_weather_data(params \\ "success") do
     case params do
       "success" ->
-        {:ok, success_body()}
+        {:ok, success()}
 
       _ ->
         {:error, "Error message text"}
     end
   end
 
-  defp success_body do
+  @spec success() :: map()
+  def success do
     %{
       "base" => "stations",
-      "clouds" => %{"all" => 100},
+      "clouds" => %{"all" => 6},
       "cod" => 200,
-      "coord" => %{"lat" => 55.7522, "lon" => 37.6156},
-      "dt" => 1_642_867_643,
-      "id" => 524_901,
+      "coord" => %{"lat" => 10.65, "lon" => -61.4833},
+      "dt" => 1_642_878_733,
+      "id" => 3_573_652,
       "main" => %{
-        "feels_like" => -8.77,
-        "grnd_level" => 993,
-        "humidity" => 96,
-        "pressure" => 1012,
-        "sea_level" => 1012,
-        "temp" => -4.35,
-        "temp_max" => -3.71,
-        "temp_min" => -4.85
+        "feels_like" => 31.75,
+        "humidity" => 58,
+        "pressure" => 1014,
+        "temp" => 29.61,
+        "temp_max" => 30.55,
+        "temp_min" => 28.86
       },
-      "name" => "Moscow",
-      "snow" => %{"1h" => 0.92},
+      "name" => "Success",
       "sys" => %{
-        "country" => "RU",
-        "id" => 47_754,
-        "sunrise" => 1_642_830_034,
-        "sunset" => 1_642_858_871,
+        "country" => "TT",
+        "id" => 2_002_897,
+        "sunrise" => 1_642_847_349,
+        "sunset" => 1_642_889_133,
         "type" => 2
       },
-      "timezone" => 10_800,
-      "visibility" => 435,
+      "timezone" => -14_400,
+      "visibility" => 10_000,
       "weather" => [
-        %{"description" => "snow", "icon" => "13n", "id" => 601, "main" => "Snow"}
+        %{
+          "description" => "clear sky",
+          "icon" => "01d",
+          "id" => 800,
+          "main" => "Clear"
+        }
       ],
-      "wind" => %{"deg" => 107, "gust" => 6.8, "speed" => 3.04}
+      "wind" => %{"deg" => 54, "gust" => 4.94, "speed" => 3.68}
     }
   end
 end

@@ -11,13 +11,13 @@ defmodule WeatherWeb.WeatherControllerTest do
     test "when success result", %{conn: conn} do
       conn = post(conn, "/search", city: "success")
 
-      assert html_response(conn, 200) =~ "Moscow, RU"
-      assert html_response(conn, 200) =~ "<b>Weather:</b> snow"
-      assert html_response(conn, 200) =~ "<b>Wind:</b> 3.04 m/s"
+      assert html_response(conn, 200) =~ "Success, TT"
+      assert html_response(conn, 200) =~ "<b>Weather:</b> clear sky"
+      assert html_response(conn, 200) =~ "<b>Wind:</b> 3.68 m/s"
     end
 
     test "when failure result", %{conn: conn} do
-      conn = post(conn, "/search", city: "invalid param")
+      conn = post(conn, "/search", city: "invalid")
 
       assert redirected_to(conn) == "/"
 
