@@ -3,15 +3,15 @@ defmodule Weather.Helpers.CacheKeyBuilderTest do
 
   alias Weather.Helpers.CacheKeyBuilder
 
-  describe "#string_to_atom_key" do
+  describe "#convert" do
     test "when param is not a binary type" do
       assert_raise FunctionClauseError, fn ->
-        CacheKeyBuilder.string_to_atom_key(1)
+        CacheKeyBuilder.convert(1)
       end
     end
 
-    test "when the parameter type is valid, it converts it to an atom key" do
-      assert CacheKeyBuilder.string_to_atom_key(" nEw  city To sEArch  ") == :new_city_to_search
+    test "when the parameter type is valid, it converts it to a valid key" do
+      assert CacheKeyBuilder.convert(" nEw  city To sEArch  ") == "new_city_to_search"
     end
   end
 end

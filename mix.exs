@@ -69,7 +69,8 @@ defmodule Weather.MixProject do
       {:excoveralls, "~> 0.10", only: :test},
       {:ex_check, "~> 0.14.0", only: [:dev], runtime: false},
       {:mock, "~> 0.3.0", only: :test},
-      {:mix_audit, "~> 1.0", only: [:dev, :test], runtime: false}
+      {:mix_audit, "~> 1.0", only: [:dev, :test], runtime: false},
+      {:sobelow, "~> 0.8", only: :dev}
     ]
   end
 

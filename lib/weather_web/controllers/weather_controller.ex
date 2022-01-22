@@ -35,7 +35,7 @@ defmodule WeatherWeb.WeatherController do
   @spec perform_request!(city_name :: binary()) :: {:ok, any()}
   defp perform_request!(city_name) do
     Cache.fetch(
-      CacheKeyBuilder.string_to_atom_key(city_name),
+      CacheKeyBuilder.convert(city_name),
       @ttl_sec,
       fn -> @api_client.get_weather_data(city_name) end
     )
