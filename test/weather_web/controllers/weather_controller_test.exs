@@ -1,6 +1,8 @@
 defmodule WeatherWeb.WeatherControllerTest do
   use WeatherWeb.ConnCase
 
+  setup :register_and_log_in_user
+
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")
 

@@ -31,7 +31,14 @@
           "apps/*/test/",
           "apps/*/web/"
         ],
-        excluded: [~r"/_build/", ~r"/deps/", ~r"/node_modules/", ~r"/.elixir_ls/"]
+        excluded: [
+          ~r"/_build/",
+          ~r"/deps/",
+          ~r"/node_modules/",
+          ~r"/.elixir_ls/",
+          ~r/accounts/,
+          ~r/user_auth/
+        ]
       },
       #
       # Load and configure plugins here:
