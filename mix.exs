@@ -68,7 +68,8 @@ defmodule Weather.MixProject do
       {:credo_contrib, "~> 0.2", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
       {:ex_check, "~> 0.14.0", only: [:dev], runtime: false},
-      {:mock, "~> 0.3.0", only: :test}
+      {:mock, "~> 0.3.0", only: :test},
+      {:mix_audit, "~> 1.0", only: [:dev, :test], runtime: false}
     ]
   end
 
