@@ -19,7 +19,7 @@ defmodule WeatherWeb.WeatherView do
 
     ~H"""
     <p>
-    	<%= name %>, <%= country %>
+    	<%= name %>, <u><%= country %></u>
     </p>
 
     <ul>

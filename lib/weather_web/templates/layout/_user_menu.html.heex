@@ -1,8 +1,8 @@
 <%= if @current_user do %>
-  <%= @current_user.email %>
-  <%= link "Settings", to: Routes.user_auth_user_settings_path(@conn, :edit) %>
-  <%= link "Log out", to: Routes.user_auth_user_session_path(@conn, :delete), method: :delete %>
+  <div class="flex-child"><%= @current_user.email %></div>
+  <div class="flex-child"><%= link "Settings", to: Routes.user_auth_user_settings_path(@conn, :edit) %></div>
+  <div class="flex-child"><%= link "Log out", to: Routes.user_auth_user_session_path(@conn, :delete), method: :delete %></div>
 <% else %>
-  <%= link "Register", to: Routes.user_auth_user_registration_path(@conn, :new) %>
-  <%= link "Log in", to: Routes.user_auth_user_session_path(@conn, :new) %>
+  <div class="flex-child"><%= link "Register", to: Routes.user_auth_user_registration_path(@conn, :new) %></div>
+  <div class="flex-child"><%= link "Log in", to: Routes.user_auth_user_session_path(@conn, :new) %></div>
 <% end %>
