@@ -51,7 +51,7 @@ config :phoenix, :json_library, Jason
 config :weather,
        Weather.ApiClients.OpenWeather,
        url: "api.openweathermap.org/data/2.5/weather?lang=en&units=metric",
-       app_id: System.get_env("OPEN_WEATHER_APP_ID")
+       app_id: System.get_env("OPEN_WEATHER_API_KEY")
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

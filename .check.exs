@@ -17,7 +17,7 @@
     # {:compiler, false},
 
     ## ...or have command & args adjusted (e.g. enable skip comments for sobelow)
-    # {:sobelow, "mix sobelow --exit --skip"},
+    {:sobelow, "mix sobelow -i Config.HTTPS"}
 
     ## ...or reordered (e.g. to see output from dialyzer before others)
     # {:dialyzer, order: -1},
