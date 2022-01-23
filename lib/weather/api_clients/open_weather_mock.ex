@@ -1,6 +1,6 @@
 defmodule Weather.ApiClients.OpenWeatherMock do
   @moduledoc """
-  An API client for making requests to an external OpenWeather service.
+  A mock for requests to external API for OpenWeather service.
   """
 
   @type handled_response ::

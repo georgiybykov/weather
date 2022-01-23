@@ -6,7 +6,7 @@ defmodule Weather.ApiClients.OpenWeatherTest do
   alias Weather.ApiClients.OpenWeather
   alias Weather.ApiClients.OpenWeatherMock
 
-  describe "#get_weather_data" do
+  describe "#get_weather_data/1" do
     test "when everything is OK" do
       with_mock HTTPoison, get!: fn _url -> success_response() end do
         handeled_response = OpenWeather.get_weather_data("Success")

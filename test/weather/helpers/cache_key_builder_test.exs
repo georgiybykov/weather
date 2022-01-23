@@ -3,7 +3,7 @@ defmodule Weather.Helpers.CacheKeyBuilderTest do
 
   alias Weather.Helpers.CacheKeyBuilder
 
-  describe "#convert" do
+  describe "#convert/1" do
     test "when param is not a binary type" do
       assert_raise FunctionClauseError, fn ->
         CacheKeyBuilder.convert(1)
