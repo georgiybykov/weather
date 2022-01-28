@@ -14,15 +14,9 @@ defmodule Weather.ApiClients.OpenWeatherMock do
   Processes the response by return code.
   """
   @spec get_weather_data(city_name :: binary()) :: handled_response
-  def get_weather_data(params \\ "success") do
-    case params do
-      "success" ->
-        {:ok, success()}
-
-      _ ->
-        {:error, "Error message text"}
-    end
-  end
+  def get_weather_data(params \\ "success")
+  def get_weather_data("success"), do: {:ok, success()}
+  def get_weather_data(_), do: {:error, "Error message text"}
 
   @spec success() :: map()
   def success do
