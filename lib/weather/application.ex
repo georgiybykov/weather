@@ -7,8 +7,6 @@ defmodule Weather.Application do
 
   @impl true
   def start(_type, _args) do
-    :ok = Weather.Cache.start()
-
     children = [
       # Start the Ecto repository
       Weather.Repo,
@@ -17,9 +15,10 @@ defmodule Weather.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Weather.PubSub},
       # Start the Endpoint (http/https)
-      WeatherWeb.Endpoint
+      WeatherWeb.Endpoint,
       # Start a worker by calling: Weather.Worker.start_link(arg)
       # {Weather.Worker, arg}
+      {Weather.Cache, name: Weather.Cache}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -3,9 +3,15 @@ defmodule Weather.CacheTest do
 
   alias Weather.Cache
 
-  describe "#start/0" do
-    test "when the second call handles an ArgumentError with cache already running" do
-      assert Cache.start() == {:error, :already_started}
+  describe "#fetch/2" do
+    test "when the key is not defined, it defines and saves the data" do
+      assert Cache.fetch(:key, fn -> "value" end) == {:ok, "value"}
+    end
+
+    test "when the key value has been stored previously, returns it" do
+      :ok = Cache.put(:key, "value")
+
+      assert Cache.fetch(:key, fn -> "value" end) == {:ok, "value"}
     end
   end
 
@@ -27,17 +33,5 @@ defmodule Weather.CacheTest do
 
   test "#delete/1" do
     assert Cache.delete(:key) == :ok
-  end
-
-  describe "#fetch/3" do
-    test "when the key is not defined, it defines and saves the data" do
-      assert Cache.fetch(:key, fn -> "value" end) == {:ok, "value"}
-    end
-
-    test "when the key value has been stored previously, returns it" do
-      :ok = Cache.put(:key, "value")
-
-      assert Cache.fetch(:key, fn -> "value" end) == {:ok, "value"}
-    end
   end
 end
