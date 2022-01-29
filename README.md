@@ -4,13 +4,15 @@ Application for fetching weather data by city name from https://openweathermap.o
 
 ## Installation
 
-You should have an account on https://openweathermap.org/. Create an `APP_UNIQUE_API_KEY` at https://home.openweathermap.org/api_keys page.
+You should have an account on https://openweathermap.org/.
+
+Create an `APP_UNIQUE_API_KEY` at https://home.openweathermap.org/api_keys page.
 
 ```fish
 $ git clone git@github.com:georgiybykov/weather.git
 $ cd weather
 
-# Create `.env` file to store sensitive environment variables and add your `APP_UNIQUE_API_KEY` there:
+# Create `.env` file to store sensitive ENV variables and add your `APP_UNIQUE_API_KEY` there:
 $ touch .env | echo 'export OPEN_WEATHER_API_KEY=APP_UNIQUE_API_KEY' >> .env
 $ source .env
 
@@ -28,3 +30,15 @@ $ iex -S mix phx.server
 ```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+
+___
+
+### **For example:**
+
+#### Weather search:
+
+![Weather search](/priv/static/images/get-weather-data-by-city.gif)
+
+#### With user authentication:
+
+![With uset authentication](/priv/static/images/with-user-auth-get-weather.gif)
