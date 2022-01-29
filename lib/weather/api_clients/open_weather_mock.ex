@@ -3,10 +3,12 @@ defmodule Weather.ApiClients.OpenWeatherMock do
   A mock for requests to external API for OpenWeather service.
   """
 
-  @type handled_response ::
-          {:ok, map()}
-          | {:unauthorized, binary()}
-          | {:error, binary()}
+  @typedoc """
+  Describes tuples for handled response, e.g.:
+    {:ok, %{"cod" => 200, "name" => "Success"}}
+    {:error, "Error message text"}
+  """
+  @type handled_response :: {:ok, map()} | {:error, binary()}
 
   @doc """
   Sends an HTTP request to the OpenWeather API
