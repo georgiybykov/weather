@@ -20,6 +20,8 @@ defmodule Weather.Cache do
   """
   @spec fetch(key :: any(), ttl :: number(), resolver :: (() -> any())) :: {:ok, any()}
   def fetch(key, ttl \\ @default_ttl_sec, resolver) when is_function(resolver, @func_arity) do
+    key = if is_binary(key), do: convert(key), else: key
+
     case get(key, ttl) do
       nil ->
         with result <- resolver.() do
@@ -108,4 +110,13 @@ defmodule Weather.Cache do
 
   @spec current_timestamp() :: integer()
   defp current_timestamp, do: DateTime.to_unix(DateTime.utc_now())
+
+  @spec convert(key :: binary()) :: binary()
+  defp convert(key) when is_binary(key) do
+    key
+    |> String.trim()
+    |> String.downcase()
+    |> String.split(~r{\s+})
+    |> Enum.join("_")
+  end
 end

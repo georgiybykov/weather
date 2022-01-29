@@ -2,14 +2,12 @@ defmodule WeatherWeb.WeatherController do
   use WeatherWeb, :controller
 
   alias Weather.Cache
-  alias Weather.Helpers.CacheKeyBuilder
 
   @api_client Application.compile_env!(:weather, :weather_api_client)
   @ttl_sec 1800
 
   @type conn() :: Plug.Conn.t()
-  @type search_map() ::
-          %{binary() => %{binary() => binary()}}
+  @type search_map() :: %{binary() => binary()}
 
   @spec index(conn(), any()) :: conn()
   def index(conn, _params) do
@@ -35,7 +33,7 @@ defmodule WeatherWeb.WeatherController do
   @spec perform_request!(city_name :: binary()) :: {:ok, any()}
   defp perform_request!(city_name) do
     Cache.fetch(
-      CacheKeyBuilder.convert(city_name),
+      city_name,
       @ttl_sec,
       fn -> @api_client.get_weather_data(city_name) end
     )
