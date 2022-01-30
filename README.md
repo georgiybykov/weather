@@ -13,7 +13,7 @@ $ git clone git@github.com:georgiybykov/weather.git
 $ cd weather
 
 # Create `.env` file to store sensitive ENV variables and add your `APP_UNIQUE_API_KEY` there:
-$ touch .env | echo 'export OPEN_WEATHER_API_KEY=APP_UNIQUE_API_KEY' >> .env
+$ echo 'export OPEN_WEATHER_API_KEY=APP_UNIQUE_API_KEY' >> .env
 $ source .env
 
 # Install and compile dependencies:
