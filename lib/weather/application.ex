@@ -14,11 +14,12 @@ defmodule Weather.Application do
       WeatherWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: Weather.PubSub},
+      # Start the Cache
+      {Weather.Cache, name: Weather.Cache},
       # Start the Endpoint (http/https)
-      WeatherWeb.Endpoint,
+      WeatherWeb.Endpoint
       # Start a worker by calling: Weather.Worker.start_link(arg)
       # {Weather.Worker, arg}
-      {Weather.Cache, name: Weather.Cache}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
