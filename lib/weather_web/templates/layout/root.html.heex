@@ -12,6 +12,10 @@
   <body>
     <header>
       <section class="container">
+        <nav class="container--flex">
+          <%= render "_user_menu.html", assigns %>
+        </nav>
+        
         <a href="/" class="phx-logo">
           <img src={Routes.static_path(@conn, "/images/weather_logo.png")} width="110" height="110"/>
         </a>

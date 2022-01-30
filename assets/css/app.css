@@ -118,3 +118,18 @@
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
+
+.container--flex {
+  display: inline-flexbox;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-child {
+  flex: 1;
+  min-width: 130px;
+  min-height: 20px;
+  margin: 7px;
+  background-color: #b5e5f3;
+  text-align: center;
+}
