@@ -63,6 +63,9 @@ config :weather, WeatherWeb.Endpoint,
     ]
   ]
 
+# Use mock API client for development environment.
+config :weather, :weather_api_client, Weather.ApiClients.OpenWeatherMock
+
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 

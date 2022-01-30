@@ -32,7 +32,7 @@ select {
 .phx-hero {
   text-align: center;
   border-bottom: 1px solid #e3e3e3;
-  background: #eee;
+  background: #e9efcc;
   border-radius: 6px;
   padding: 3em 3em 1em;
   margin-bottom: 3rem;
@@ -50,6 +50,10 @@ select {
 .phx-logo img {
   width: auto;
   display: block;
+}
+
+.text-left {
+  text-align: left;
 }
 
 /* Headers */

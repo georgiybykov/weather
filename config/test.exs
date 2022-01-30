@@ -1,5 +1,8 @@
 import Config
 
+# Only in tests, remove the complexity from the password hashing algorithm
+config :bcrypt_elixir, :log_rounds, 1
+
 # Configure your database
 #
 # The MIX_TEST_PARTITION environment variable can be used
@@ -22,6 +25,9 @@ config :weather, WeatherWeb.Endpoint,
 
 # In test we don't send emails.
 config :weather, Weather.Mailer, adapter: Swoosh.Adapters.Test
+
+# Use mock API client for test environment.
+config :weather, :weather_api_client, Weather.ApiClients.OpenWeatherMock
 
 # Print only warnings and errors during test
 config :logger, level: :warn

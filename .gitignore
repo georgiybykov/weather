@@ -32,3 +32,9 @@ weather-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Ignore Dialyzer PLTs files.
+/priv/plts/*
+!/priv/plts/.keep
+
+# Ignore the list of environment variables.
+.env
