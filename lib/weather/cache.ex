@@ -26,6 +26,7 @@ defmodule Weather.Cache do
       nil ->
         with result <- resolver.() do
           put(key, result)
+
           {:ok, result}
         end
 
@@ -108,7 +109,7 @@ defmodule Weather.Cache do
 
   # Cache private functions.
 
-  @spec current_timestamp() :: integer()
+  @spec current_timestamp() :: non_neg_integer()
   defp current_timestamp, do: DateTime.to_unix(DateTime.utc_now())
 
   @spec convert(key :: binary()) :: binary()
