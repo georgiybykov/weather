@@ -35,25 +35,19 @@ defmodule Weather.Cache do
     end
   end
 
-  @doc """
-  Gets a value from the cache.
-  """
+  @doc "Gets a value from the cache."
   @spec get(key :: any(), ttl :: non_neg_integer()) :: any()
   def get(key, ttl \\ @default_ttl_sec) do
     GenServer.call(__MODULE__, {:get, key, ttl})
   end
 
-  @doc """
-  Puts a value into the cache.
-  """
+  @doc "Puts a value into the cache."
   @spec put(key :: any(), value :: any()) :: :ok
   def put(key, value) do
     GenServer.call(__MODULE__, {:put, key, value})
   end
 
-  @doc """
-  Deletes a value from the cache.
-  """
+  @doc "Deletes a value from the cache."
   @spec delete(key :: any()) :: :ok
   def delete(key) do
     GenServer.call(__MODULE__, {:delete, key})
